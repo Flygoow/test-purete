@@ -785,7 +785,7 @@ window.onload = function() {
   fillNode(create('body'), tag('h1', '<a href=.>TEST DE PURETÉ</a>') +
                           tag('ul', tableauScores) +
                           tag('div',
-                          '<img src=purete.png width=57 height=57>' +
+                          '<img src=favicon.png width=57 height=57>' +
                           '<p>Ce jeu d\'un goût douteux vous en apprendra ' +
                           'beaucoup sur vous-même…</p>' + button('Commencer') +
                           tag('footer',
