@@ -1,6 +1,4 @@
-.DS_Store
 sg.*
 *.php
 favicon.ico
-data/
-doc/
+.*
