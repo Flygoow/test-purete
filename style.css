@@ -1,0 +1,248 @@
+body, html, h1, div, footer
+{
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+body, html
+{
+    height: 100%;
+}
+
+h1
+{
+    font: 65px Impact;
+    line-height: 80px;
+    text-shadow: 0 0 10px rgba(255,255,255,.5);
+}
+
+h1 a
+{
+    color: #000;
+    text-decoration: none;
+}
+
+ul
+{
+    padding: 0;
+}
+
+li
+{
+    font: 15px Verdana;
+    display: inline-block;
+    list-style-type: none;
+    padding: 4px;
+    text-transform: uppercase;
+    width: 110px;
+    border-radius: 9px;
+    margin: 3px;
+    opacity: .9;
+    text-shadow: 0 0 4px #fff;
+}
+
+li b
+{
+    display: block;
+    background: rgba(100,100,100,.4);
+    width: 100%;
+    color: #fff;
+    text-shadow: 0 0 4px #000;
+    border-radius: 7px;
+}
+
+footer, table
+{
+    font: 12px Sans-serif;
+    margin-top: 20px;
+}
+
+nav b
+{
+    display: inline-block;
+    padding: 3px 0;
+    font: 14px Sans-serif;
+    text-shadow: 0 0 3px #000;
+    width: 6.25%;
+}
+
+nav
+{
+    color: #fff;
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.k
+{
+    color: #000;
+    text-shadow:0 0 3px #fff;
+    font-size:18px;
+}
+
+a
+{
+    color: #249;
+}
+
+.divin
+{
+    background-color: #ccf;
+}
+
+.saint
+{
+    background-color: #ddf;
+}
+
+.pur
+{
+    background-color: #eef;
+}
+
+.normal
+{
+    background-color: #efe;
+}
+
+.immoral
+{
+    background-color: #efc;
+}
+
+.impur
+{
+    background-color: #ef8;
+}
+
+.indecent
+{
+    background-color: #ef6;
+}
+
+.malsain
+{
+    background-color: #ef4;
+}
+
+.ignoble
+{
+    background-color: #ef2;
+}
+
+.vicieux
+{
+    background-color: #ee0;
+}
+
+.infame
+{
+    background-color: #f80;
+}
+
+.deprave
+{
+    background-color: #f40;
+}
+
+.dangereux
+{
+    background-color: #f00;
+}
+
+.inhumain
+{
+    background-color: #c00;
+}
+
+.demon
+{
+    background-color: #a00;
+}
+
+.diabolique
+{
+    background-color: #800;
+}
+
+#kharma, li:hover
+{
+    font-weight: bold;
+    opacity: 1;
+}
+
+body, html
+{
+    height: 100%;
+}
+
+body
+{
+    background-image: -moz-radial-gradient(transparent, rgba(0,0,0,.4));
+    background-image: -webkit-radial-gradient(transparent, rgba(0,0,0,.4));
+}
+
+p
+{
+    font: 14pt Helvetica,Verdana,Arial;
+    text-shadow: 0 0 3px #fff;
+}
+
+button
+{
+    font: 20px Helvetica,Verdana,Arial;
+    font-weight: bold;
+    border-radius: 19px;
+    margin: 2px 9px;
+    padding: 5px 9px;
+    border: 1px #666 solid;
+    background-color: #ddd;
+    background-image: -moz-linear-gradient(transparent, rgba(0,0,0,.2));
+    background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,.2));
+}
+
+button:hover
+{
+    box-shadow: 0 0 4px #000
+}
+
+button, li
+{
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+}
+
+@media (max-width: 600px)
+{
+    ul
+    {
+        margin: 0;
+    }
+
+    h1
+    {
+        font: 20px Impact;
+        line-height: 30px;
+    }
+    
+    li
+    {
+        padding: 2px;
+        margin: 2px;
+    }
+
+    nav
+    {
+        display: none;
+    }
+
+    button
+    {
+        padding: 2px 7px;
+    }
+}
