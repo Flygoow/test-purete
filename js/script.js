@@ -47,23 +47,24 @@ var niveaux = {
 
 /**
  * Liste des questions
- * @type {Array.<number, {categorie: string, texte: string, choix: Object}>}
+ * @type {Array.<{categorie: string, texte: string, choix: Object}>}
+ * @const
  */
 var questions = [
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà ri du malheur de quelqu\'un ?',
+    texte: 'Avez-vous déjà ri du malheur de quelqu’un ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'morale',
-    texte: 'Avez vous déjà ri d\'une personne mentalement ' +
+    texte: 'Avez vous déjà ri d’une personne mentalement ' +
         'ou physiquement handicapée ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà embrassé quelqu\'un ?',
+    texte: 'Avez-vous déjà embrassé quelqu’un ?',
     choix: {'oui': 0, 'non': 1}
   },
   {
@@ -73,7 +74,7 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Jusqu\'à l\'orgasme ?',
+    texte: 'Jusqu’à l’orgasme ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -89,7 +90,7 @@ var questions = [
   },
   {
     categorie: 'alcool',
-    texte: 'Avez-vous déjà bu de l\'alcool ?',
+    texte: 'Avez-vous déjà bu de l’alcool ?',
     choix: {'oui': -1, 'non': 2}
   },
   {
@@ -104,12 +105,12 @@ var questions = [
   },
   {
     categorie: 'alcool',
-    texte: 'Avez-vous déjà vomi à cause de l\'alcool ?',
+    texte: 'Avez-vous déjà vomi à cause de l’alcool ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
     categorie: 'alcool',
-    texte: 'Avez-vous déjà vomi sur vous ou sur quelqu\'un d\'autre ?',
+    texte: 'Avez-vous déjà vomi sur vous ou sur quelqu’un d’autre ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
@@ -119,7 +120,7 @@ var questions = [
   },
   {
     categorie: 'alcool',
-    texte: 'Avez-vous déjà vomi de la bile ou du sang à cause de l\'alcool ?',
+    texte: 'Avez-vous déjà vomi de la bile ou du sang à cause de l’alcool ?',
     choix: {'oui': -3, 'non': 0}
   },
   {
@@ -134,14 +135,14 @@ var questions = [
   },
   {
     categorie: 'alcool',
-    texte: 'Vous êtes vous déjà fait sortir d\'un bar' +
-        ' ou d\'une boîte de force ?',
+    texte: 'Vous êtes vous déjà fait sortir d’un bar' +
+        ' ou d’une boîte de force ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'alcool',
     texte: 'Avez-vous déjà participé à un barathon ? ' +
-        '(tous les bars d\'une ville ou d\'une rue)',
+        '(tous les bars d’une ville ou d’une rue)',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -207,11 +208,11 @@ var questions = [
     categorie: 'morale',
     texte: 'Possédez-vous une bible ou un autre ' +
         'livre saint (coran, torah, ...) ?',
-    choix: {'j\'en ai plusieurs': 4, 'oui': 2, 'non': 0}
+    choix: {'j’en ai plusieurs': 4, 'oui': 2, 'non': 0}
   },
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà été à l\'église volontairement ' +
+    texte: 'Avez-vous déjà été à l’église volontairement ' +
         '(ou dans un autre lieux saint) ?',
     choix: {'souvent': 8, 'quelquefois': 2, 'jamais': 0}
   },
@@ -227,7 +228,7 @@ var questions = [
   },
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà blessé volontairement quelqu\'un ?',
+    texte: 'Avez-vous déjà blessé volontairement quelqu’un ?',
     choix: {
       'Plusieurs fois': -8,
       'oui': -4,
@@ -275,13 +276,13 @@ var questions = [
   },
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà profité de quelqu\'un pendant qu\'il/elle était ' +
+    texte: 'Avez-vous déjà profité de quelqu’un pendant qu’il/elle était ' +
         'ivre, drogué(e), ou momentanément handicapé(e) ?',
     choix: {'oui': -3, 'non': 0}
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà soulé ou drogué quelqu\'un ' +
+    texte: 'Avez-vous déjà soulé ou drogué quelqu’un ' +
         'pour en abuser sexuellement et réussi ?',
     choix: {'oui': -2, 'non': 0}
   },
@@ -293,7 +294,7 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Jusqu\'à l\'orgasme ?',
+    texte: 'Jusqu’à l’orgasme ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -329,13 +330,13 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà subi ou été à l\'origine d\'un avortement ?',
+    texte: 'Avez-vous déjà subi ou été à l’origine d’un avortement ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles ' +
-        'avec plus d\'une personne en même temps ?',
+        'avec plus d’une personne en même temps ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -353,7 +354,7 @@ var questions = [
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des brûlures de tapis (brûlures dues aux ' +
         'frottements sur un tapis plutôt rugueux) ' +
-        'lors d\'une relation sexuelle ?',
+        'lors d’une relation sexuelle ?',
     choix: {'oui': -1, 'non': 0}},
   {
     categorie: 'sexe',
@@ -375,13 +376,13 @@ var questions = [
   {
     categorie: 'sexe',
     texte: 'Vous êtes-vous déjà endormi(e) ou évanoui(e) ' +
-        'pendant l\'acte sexuel ?',
+        'pendant l’acte sexuel ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà été responsable de la perte de la virginité de ' +
-        'quelqu\'un, et si oui, de combien de personnes ?',
+        'quelqu’un, et si oui, de combien de personnes ?',
     choix: {
       '3 ou +': -1,
       '2 personnes': -1,
@@ -407,7 +408,7 @@ var questions = [
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles ' +
-        'avec quelqu\'un de votre famille ?',
+        'avec quelqu’un de votre famille ?',
     choix: {'oui': -4, 'non': 0}
   },
   {
@@ -433,26 +434,26 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà eu un coup d\'une nuit ? ' +
-        '(une histoire d\'un soir avec relation sexuelle)',
+    texte: 'Avez-vous déjà eu un coup d’une nuit ? ' +
+        '(une histoire d’un soir avec relation sexuelle)',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà eu un coup d\'une nuit, et quitté ' +
+    texte: 'Avez-vous déjà eu un coup d’une nuit, et quitté ' +
         'votre partenaire sans même lui dire aurevoir ?',
     choix: {'oui': -5, 'non': 0}
   },
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles avec plus ' +
-        'd\'une personne de la même famille ?',
+        'd’une personne de la même famille ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles avec une personne qui ' +
-        'était déjà engagée dans une relation avec quelqu\'un d\'autre ?',
+        'était déjà engagée dans une relation avec quelqu’un d’autre ?',
     choix: {'oui': -3, 'non': 0}
   },
   {
@@ -463,7 +464,7 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà eu des relations sexuelles avec quelqu\'un qui ' +
+    texte: 'Avez-vous déjà eu des relations sexuelles avec quelqu’un qui ' +
         'était beaucoup plus vieux ou plus jeune que vous ?',
     choix: {'oui': -1, 'non': 0}
   },
@@ -474,12 +475,12 @@ var questions = [
   },
   {
     categorie: 'sexe',
-    texte: 'Avez-vous déjà eu des relations sexuelles contre de l\'argent ?',
+    texte: 'Avez-vous déjà eu des relations sexuelles contre de l’argent ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
     categorie: 'hygiene',
-    texte: 'Avez-vous déjà mangé votre vomi ou celui de quelqu\'un d\'autre ?',
+    texte: 'Avez-vous déjà mangé votre vomi ou celui de quelqu’un d’autre ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -491,8 +492,8 @@ var questions = [
   {
     categorie: 'hygiene',
     texte: 'Avez-vous déjà participé à une douche dorée ' +
-        '(uriner sur quelqu\'un d\'autre ou se faire uriner dessus ' +
-        'par quelqu\'un d\'autre) ?',
+        '(uriner sur quelqu’un d’autre ou se faire uriner dessus ' +
+        'par quelqu’un d’autre) ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
@@ -518,18 +519,18 @@ var questions = [
   },
   {
     categorie: 'morale',
-    texte: 'Avez-vous déjà posé un lapin à quelqu\'un ?',
+    texte: 'Avez-vous déjà posé un lapin à quelqu’un ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'sexe',
-    texte: 'Etes-vous déjà sorti(e) avec quelqu\'un juste pour le sexe ?',
+    texte: 'Etes-vous déjà sorti(e) avec quelqu’un juste pour le sexe ?',
     choix: {'oui': -1, 'non': 0}
   },
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles sur le pouce ' +
-        '(entre deux cours, dans la rue, le tout dans l\'urgence, ' +
+        '(entre deux cours, dans la rue, le tout dans l’urgence, ' +
         'sans préliminaires ou presque) ?',
     choix: {'oui': -1, 'non': 0}
   },
@@ -545,13 +546,13 @@ var questions = [
   },
   {
     categorie: 'hygiene',
-    texte: 'Avez vous déjà fait boire votre urine à quelqu\'un d\'autre ?',
+    texte: 'Avez vous déjà fait boire votre urine à quelqu’un d’autre ?',
     choix: {'oui': -3, 'Oui, avec du jus de fruit': -5, 'non': 0}
   },
   {
     categorie: 'morale',
     texte: 'Avez vous déjà détruit un bien public ?',
-    choix: {'oui': -2, 'Ça m\'arrive souvent': -3, 'non': 0}
+    choix: {'oui': -2, 'Ça m’arrive souvent': -3, 'non': 0}
   },
   {
     categorie: 'morale',
@@ -565,7 +566,7 @@ var questions = [
   },
   {
     categorie: 'alcool',
-    texte: 'Avez-vous déjà volé de l\'alcool (y compris dans un bar) ?',
+    texte: 'Avez-vous déjà volé de l’alcool (y compris dans un bar) ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
@@ -597,7 +598,7 @@ var questions = [
   {
     categorie: 'sexe',
     texte: 'Avez-vous déjà eu des relations sexuelles ' +
-        'avec le/la partenaire d\'un(e) de vos ami(e)s ?',
+        'avec le/la partenaire d’un(e) de vos ami(e)s ?',
     choix: {'oui': -2, 'non': 0}
   },
   {
@@ -719,7 +720,7 @@ function compterPoint(x) {
     pk = pk.innerHTML.split('<br>');
 
     getId('j').innerHTML = '<p><big><big>' +
-                           'C\'est fini : Vous êtes <b>' + pk[1] + '</b> ' +
+                           'C’est fini : Vous êtes <b>' + pk[1] + '</b> ' +
                            '(' + scores['kharma'] + ' points)' +
                            '</big></big></p>' +
                            button('send', 'Recevoir mon résultat par mail');
@@ -730,7 +731,7 @@ function compterPoint(x) {
 
 
 /**
- * Affiche une question
+ * Affiche la question suivante
  */
 function afficherQuestion() {
 
@@ -774,7 +775,7 @@ function afficherListeQuestions() {
 
 
 /**
- * Start game
+ * Initialise le jeu
  */
 window.onload = function() {
 
@@ -786,14 +787,14 @@ window.onload = function() {
                           tag('ul', tableauScores) +
                           tag('div',
                           '<img src=favicon.png width=57 height=57>' +
-                          '<p>Ce jeu d\'un goût douteux vous en apprendra ' +
+                          '<p>Ce jeu d’un goût douteux vous en apprendra ' +
                           'beaucoup sur vous-même…</p>' + button('Commencer') +
                           tag('footer',
                           tag('a', 'Liste des questions', 'liste') + '. ' +
                           'Inspiré du <a href="http://test.griffor.com">' +
                           'griffor</a>, créé par ' +
                           '<a href=//boudah.pl>Boudah</a> ' +
-                          'de l\'association ' +
+                          'de l’association ' +
                           '<a href=//talenka.org>Talenka</a>'), 'j') +
                           tag('nav', '', 'b'));
 

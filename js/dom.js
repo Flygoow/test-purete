@@ -1,8 +1,8 @@
 /**
- * SocialGraph (socialgraph.boudah.pl)
+ * Test de pureté (test-purete.boudah.pl)
  *
- * Created by Boudah Talenka <boudah.talenka@gmail.com>
- * and published under the GNU General Public License.
+ * Créé par Boudah Talenka <boudah.talenka@gmail.com>
+ * et publié sous licence GNU General Public License.
  */
 
 
