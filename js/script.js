@@ -46,6 +46,13 @@ var niveaux = {
 
 
 /**
+ * L'élément HTML qui va contenir les questions/réponses
+ * @type {Node}
+ */
+var conteneur;
+
+
+/**
  * Liste des questions
  * @type {Array.<{categorie: string, texte: string, choix: Object}>}
  * @const
@@ -719,11 +726,11 @@ function compterPoint(x) {
     pk = pk[0];
     pk = pk.innerHTML.split('<br>');
 
-    getId('j').innerHTML = '<p><big><big>' +
-                           'C’est fini : Vous êtes <b>' + pk[1] + '</b> ' +
-                           '(' + scores['kharma'] + ' points)' +
-                           '</big></big></p>' +
-                           button('send', 'Recevoir mon résultat par mail');
+    conteneur.innerHTML = '<p><big><big>' +
+                          'C’est fini : Vous êtes <b>' + pk[1] + '</b> ' +
+                          '(' + scores['kharma'] + ' points)' +
+                          '</big></big></p>' +
+                          button('send', 'Recevoir mon résultat par mail');
 
     getId('send').onclick = afficherEnvoiResultats;
   }
@@ -735,11 +742,11 @@ function compterPoint(x) {
  */
 function afficherQuestion() {
 
-  fillNode(getId('j'), tag('p', questions[questionCourante].texte));
+  fillNode(conteneur, tag('p', questions[questionCourante].texte));
 
   for (var r in questions[questionCourante].choix)
   {
-    fillNode(appendNode(getId('j'), 'button'), r).onclick = function(e) {
+    fillNode(appendNode(conteneur, 'button'), r).onclick = function(e) {
       compterPoint(e.target.innerHTML);
     };
   }
@@ -770,7 +777,7 @@ function afficherListeQuestions() {
                 tag('td', o));
   }
 
-  fillNode(getId('j'), html + '</table>');
+  fillNode(conteneur, html + '</table>');
 }
 
 
@@ -783,20 +790,21 @@ window.onload = function() {
 
   for (var n in scores) tableauScores += tag('li', '', n);
 
-  fillNode(create('body'), tag('h1', '<a href=.>TEST DE PURETÉ</a>') +
-                          tag('ul', tableauScores) +
-                          tag('div',
-                          '<img src=favicon.png width=57 height=57>' +
-                          '<p>Ce jeu d’un goût douteux vous en apprendra ' +
-                          'beaucoup sur vous-même…</p>' + button('Commencer') +
-                          tag('footer',
-                          tag('a', 'Liste des questions', 'liste') + '. ' +
-                          'Inspiré du <a href="http://test.griffor.com">' +
-                          'griffor</a>, créé par ' +
-                          '<a href=//boudah.pl>Boudah</a> ' +
-                          'de l’association ' +
-                          '<a href=//talenka.org>Talenka</a>'), 'j') +
-                          tag('nav', '', 'b'));
+  fillNode(create('body'),
+           tag('h1', '<a href=.>TEST DE PURETÉ</a>') +
+           tag('ul', tableauScores) +
+           tag('div',
+               '<img src=favicon.png width=57 height=57>' +
+               '<p>Ce jeu d’un goût douteux vous en apprendra ' +
+               'beaucoup sur vous-même…</p>' + button('Commencer') +
+               tag('footer',
+                   tag('a', 'Liste des questions', 'liste') + '. ' +
+                   'Inspiré du <a href="http://test.griffor.com">' +
+                   'griffor</a>, créé par <a href=//boudah.pl>Boudah</a> ' +
+                   'de l’association <a href=//talenka.org>Talenka</a>'), 'j') +
+                   tag('nav', '', 'b'));
+
+  conteneur = getId('j');
 
   getId('Commencer').onclick = function() { afficherQuestion(); };
   getId('liste').onclick = afficherListeQuestions;
