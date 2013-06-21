@@ -1,7 +1,7 @@
 /**
  * Test de pureté (test-purete.boudah.pl)
  *
- * Créé par Boudah Talenka <boudah.talenka@gmail.com>
+ * Créé par Boudah Talenka (boudah.pl)
  * et publié sous licence GNU General Public License.
  */
 
