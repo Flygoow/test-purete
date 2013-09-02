@@ -690,14 +690,11 @@ function compterPoint(x) {
   scores['kharma'] += points / 2;
   scores[questions[questionCourante].categorie] += points;
 
-  for (var n in scores)
-  {
+  for (var n in scores) {
     var r = '?';
 
-    for (var v in niveaux)
-    {
-      if (scores[n] >= niveaux[v])
-      {
+    for (var v in niveaux) {
+      if (scores[n] >= niveaux[v]) {
         r = v;
         break;
       }
@@ -715,19 +712,17 @@ function compterPoint(x) {
     getId(n).className = document.body.className = r;
   }
 
-  if (questionCourante < questions.length - 1)
-  {
+  if (questionCourante < questions.length - 1) {
     questionCourante++;
     afficherQuestion();
-  }
-  else {
 
-    var pk = getId('kharma').getElementsByTagName('b');
-    pk = pk[0];
-    pk = pk.innerHTML.split('<br>');
+  } else {
+
+    var pk = getId('kharma').getElementsByTagName('b')[0]
+             .innerHTML.split('<br>')[1];
 
     conteneur.innerHTML = '<p><big><big>' +
-                          'C’est fini : Vous êtes <b>' + pk[1] + '</b> ' +
+                          'C’est fini : Vous êtes <b>' + pk + '</b> ' +
                           '(' + scores['kharma'] + ' points)' +
                           '</big></big></p>' +
                           button('send', 'Recevoir mon résultat par mail');
@@ -744,8 +739,7 @@ function afficherQuestion() {
 
   fillNode(conteneur, tag('p', questions[questionCourante].texte));
 
-  for (var r in questions[questionCourante].choix)
-  {
+  for (var r in questions[questionCourante].choix) {
     fillNode(appendNode(conteneur, 'button'), r).onclick = function(e) {
       compterPoint(e.target.innerHTML);
     };
@@ -758,14 +752,12 @@ function afficherQuestion() {
  */
 function afficherListeQuestions() {
 
-  var html = '<table border=1>' +
-             tag('tr',
-                 tag('th', 'Type') +
-                 tag('th', 'Question') +
-                 tag('th', 'Choix (points)'));
+  var html = '<table border=1>' + tag('tr',
+                                      tag('th', 'Type') +
+                                      tag('th', 'Question') +
+                                      tag('th', 'Choix (points)'));
 
-  for (var q = 0; q < questions.length; q++)
-  {
+  for (var q = 0; q < questions.length; q++) {
     var o = '';
     var question = questions[q];
 
@@ -806,6 +798,6 @@ window.onload = function() {
 
   conteneur = getId('j');
 
-  getId('Commencer').onclick = function() { afficherQuestion(); };
+  getId('Commencer').onclick = afficherQuestion;
   getId('liste').onclick = afficherListeQuestions;
 };
