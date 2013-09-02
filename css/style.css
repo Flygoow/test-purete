@@ -13,7 +13,7 @@ body, html
 
 h1
 {
-    font: 65px Impact;
+    font: 65px impact;
     line-height: 80px;
     text-shadow: 0 0 10px rgba(255, 255, 255, .5);
 }
@@ -31,7 +31,7 @@ ul
 
 li
 {
-    font: 15px Verdana;
+    font: 15px verdana;
     display: inline-block;
     list-style-type: none;
     padding: 4px;
@@ -55,7 +55,7 @@ li b
 
 footer, table
 {
-    font: 12px Sans-serif;
+    font: 12px sans-serif;
     margin-top: 20px;
 }
 
@@ -63,7 +63,7 @@ nav b
 {
     display: inline-block;
     padding: 3px 0;
-    font: 14px Sans-serif;
+    font: 14px sans-serif;
     text-shadow: 0 0 3px #000;
     width: 6.25%;
 }
@@ -188,13 +188,13 @@ body
 
 p
 {
-    font: 14pt Helvetica,Verdana,Arial;
+    font: 14pt helvetica, verdana, arial;
     text-shadow: 0 0 3px #fff;
 }
 
 button
 {
-    font: 20px Helvetica,Verdana,Arial;
+    font: 20px helvetica, verdana, arial;
     font-weight: bold;
     border-radius: 19px;
     margin: 2px 9px;
@@ -223,7 +223,7 @@ button, li
 
     h1
     {
-        font: 20px Impact;
+        font: 20px impact;
         line-height: 30px;
     }
     
