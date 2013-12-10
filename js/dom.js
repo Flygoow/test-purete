@@ -23,7 +23,6 @@ function getId(id) {
  * @return {Node} The DOM Node.
  */
 function create(tagName, opt_id) {
-
   return appendNode(document.body, tagName, opt_id);
 }
 
