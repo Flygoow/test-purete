@@ -32,7 +32,6 @@ ul
 li
 {
     font: 15px verdana;
-    display: inline-block;
     list-style-type: none;
     padding: 4px;
     text-transform: uppercase;
@@ -45,7 +44,6 @@ li
 
 li b
 {
-    display: block;
     background: rgba(100, 100, 100, .4);
     width: 100%;
     color: #fff;
@@ -61,21 +59,29 @@ footer, table
 
 nav b
 {
-    display: inline-block;
     padding: 3px 0;
     font: 14px sans-serif;
     text-shadow: 0 0 3px #000;
     width: 6.25%;
 }
 
+nav b, li
+{
+    display: inline-block;
+}
+
 nav
 {
     color: #fff;
-    display: block;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+}
+
+li b, nav
+{
+    display: block;
 }
 
 .k
@@ -170,9 +176,9 @@ a
     background: #800;
 }
 
-#kharma, li:hover
+#kharma, li:hover, button
 {
-    font-weight: bold;
+    font-weight: 700;
     opacity: 1;
 }
 
@@ -183,25 +189,26 @@ body, html
 
 body
 {
-    background-image: radial-gradient(transparent, rgba(0, 0, 0, .4));
+    background-image: radial-gradient(#fff, rgba(0, 0, 0, .4));
 }
 
 p
 {
-    font: 14pt helvetica, verdana, arial;
     text-shadow: 0 0 3px #fff;
 }
 
 button
 {
-    font: 20px helvetica, verdana, arial;
-    font-weight: bold;
     border-radius: 19px;
     margin: 2px 9px;
     padding: 5px 9px;
     border: 1px #666 solid;
-    background-color: #ddd;
-    background-image: linear-gradient(transparent, rgba(0, 0, 0, .2));
+    background: #ddd linear-gradient(transparent, rgba(0, 0, 0, .2));
+}
+
+p, button
+{
+    font: 19px helvetica, verdana, arial;
 }
 
 button:hover
