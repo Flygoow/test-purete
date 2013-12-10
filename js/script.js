@@ -21,6 +21,20 @@ var scores = {
 
 
 /**
+ * Coefficient pour chaque catégorie
+ * @type {Object.<string, number>}
+ */
+var coefs = {
+  'sexe': 1.96,
+  'alcool': 2.78,
+  'drogue': 3.44,
+  'hygiene': 3.22,
+  'morale': 1.85,
+  'kharma': 0.5
+};
+
+
+/**
  * Noms et position des niveaux de pureté (attention, les noms associés au CSS)
  * @type {Object.<string, number>}
  * @const
@@ -687,8 +701,9 @@ function afficherEnvoiResultats() {
 function compterPoint(x) {
 
   var points = questions[questionCourante].choix[x];
-  scores['kharma'] += points / 2;
-  scores[questions[questionCourante].categorie] += points;
+  scores['kharma'] += points * coefs['kharma'];
+  scores[questions[questionCourante].categorie] +=
+      points * coefs[questions[questionCourante].categorie];
 
   for (var n in scores) {
     var r = '?';
