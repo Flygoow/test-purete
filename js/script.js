@@ -4,6 +4,7 @@
  * Créé par Boudah Talenka (boudah.pl)
  * et publié sous licence GNU General Public License.
  */
+'use strict';
 
 
 /**
@@ -21,10 +22,11 @@ var scores = {
 
 
 /**
- * Coefficient pour chaque catégorie
+ * Coefficient pour chaque catégorie qui permet de normalisé les points (en
+ * fixant le maximum)
  * @type {Object.<string, number>}
  */
-var coefs = {
+const coefs = {
   'sexe': 1.96,
   'alcool': 2.78,
   'drogue': 3.44,
@@ -35,11 +37,13 @@ var coefs = {
 
 
 /**
- * Noms et position des niveaux de pureté (attention, les noms associés au CSS)
+ * Noms et position des niveaux de pureté (attention, les noms sont associés aux
+ * classes CSS). Le nombre correspond au seuil de points dans une catégorie pour
+ * activer le niveau.
+ *
  * @type {Object.<string, number>}
- * @const
  */
-var niveaux = {
+const niveaux = {
   'divin': 20,
   'saint': 10,
   'pur': 0,
@@ -61,17 +65,18 @@ var niveaux = {
 
 /**
  * L'élément HTML qui va contenir les questions/réponses
- * @type {Node}
+ * @type {Element}
  */
 var conteneur;
 
 
 /**
  * Liste des questions
- * @type {Array.<{categorie: string, texte: string, choix: Object}>}
- * @const
+ * @type {Array.<{categorie: string,
+ *                texte: string,
+ *                choix: Object.<string, number>}>}
  */
-var questions = [
+const questions = [
   {
     categorie: 'morale',
     texte: 'Avez-vous déjà ri du malheur de quelqu’un ?',
@@ -681,33 +686,54 @@ var questionCourante = 0;
  */
 function afficherEnvoiResultats() {
 
+  /** @type {string} */
   var resultat = '';
 
-  for (var categorie in scores)
+  for (var categorie in scores) {
     resultat += categorie + ' : ' + scores[categorie] + '\n';
+  }
 
+  // On ouvre une popup pour envoyer un mail. Normalement soit cela ouvre le
+  // logiciel de messagerie de l'utilisateur, soit la messagerie web (gmail...)
+  // Avec un sujet et un corps de mail pré-rempli.
   window.open('mailto:' +
-      prompt('Votre adresse email') +
+      prompt('Quelle est votre adresse email ?') +
       '?subject=Test%20de%20purete&body=' +
       escape('Voici le resultat de votre test de purete :\n\n' + resultat +
-             '\n\nhttp://test-purete.boudah.pl'));
+             '\n\n' + document.location));
 }
 
 
 /**
  * Incrémente le compteur associé à la réponse de l'utilisateur
- * @param {number} x La réponse choisie.
+ * @param {Event} e La réponse choisie.
  */
-function compterPoint(x) {
+function compterPoint(e) {
 
-  var points = questions[questionCourante].choix[x];
+  /** @type {string} Réponse choisie à la question */
+  const reponse = String(e.target.innerHTML);
+
+  /** @type {number} Combien de points rapporte la question */
+  const points = questions[questionCourante].choix[reponse];
+
+  // On incrémente le kharma
   scores['kharma'] += points * coefs['kharma'];
+
+  // On incrémente le score de la catégorie correpondante à la question courante
   scores[questions[questionCourante].categorie] +=
       points * coefs[questions[questionCourante].categorie];
 
-  for (var n in scores) {
-    var r = '?';
+  /** @type {string} Nom du niveau atteint (pour chaque catégorie) */
+  var r;
 
+  /** @type {string} Contenu HTML de la liste des scores */
+  var html;
+
+  // On parcourt les scores de chaque catégorie
+  for (var n in scores) {
+    r = '?';
+
+    // On détermine le nom du niveau atteint dans chaque catégorie
     for (var v in niveaux) {
       if (scores[n] >= niveaux[v]) {
         r = v;
@@ -715,10 +741,11 @@ function compterPoint(x) {
       }
     }
 
-    var html = '';
+    html = '';
 
-    for (var v in niveaux)
+    for (var v in niveaux) {
       html += '<b class="' + v + ((r == v) ? ' k' : '') + '">' + v + '</b>';
+    }
 
     fillNode(getId('b'), html);
 
@@ -727,14 +754,18 @@ function compterPoint(x) {
     getId(n).className = document.body.className = r;
   }
 
+  // Si l'on n'a pas atteint la dernière question, on affiche la suivante
   if (questionCourante < questions.length - 1) {
     questionCourante++;
     afficherQuestion();
 
+  // Si le questionnaire est fini, on affiche le résultat et on propose l'envoi
+  // des résultats par email.
   } else {
 
-    var pk = getId('kharma').getElementsByTagName('b')[0]
-             .innerHTML.split('<br>')[1];
+    /** @type {string} Niveau final en kharma */
+    const pk = getId('kharma').getElementsByTagName('b').item(0)
+                   .innerHTML.split('<br>')[1];
 
     conteneur.innerHTML = '<p><big><big>' +
                           'C’est fini : Vous êtes <b>' + pk + '</b> ' +
@@ -752,12 +783,13 @@ function compterPoint(x) {
  */
 function afficherQuestion() {
 
+  // On affiche la question
   fillNode(conteneur, tag('p', questions[questionCourante].texte));
 
+  // On affiche la liste des choix possibles
   for (var r in questions[questionCourante].choix) {
-    fillNode(appendNode(conteneur, 'button'), r).onclick = function(e) {
-      compterPoint(e.target.innerHTML);
-    };
+    fillNode(appendNode(conteneur, 'button'), r)
+        .addEventListener('click', compterPoint);
   }
 }
 
@@ -767,14 +799,21 @@ function afficherQuestion() {
  */
 function afficherListeQuestions() {
 
+  /** @type {string} */
   var html = '<table border=1>' + tag('tr',
                                       tag('th', 'Type') +
                                       tag('th', 'Question') +
                                       tag('th', 'Choix (points)'));
 
+  /** @type {string} Liste des choix d'une question */
+  var o;
+
+  /** @type {{categorie: string, texte: string, choix: Object}} */
+  var question;
+
   for (var q = 0; q < questions.length; q++) {
-    var o = '';
-    var question = questions[q];
+    o = '';
+    question = questions[q];
 
     for (var r in question.choix) o += r + ' (' + question.choix[r] + '), ';
 
@@ -788,11 +827,10 @@ function afficherListeQuestions() {
 }
 
 
-/**
- * Initialise le jeu
- */
-window.onload = function() {
+/** Initialisation du questionnaire */
+function demarrage() {
 
+  /** @type {string} Tableau HTML des scores */
   var tableauScores = '';
 
   for (var n in scores) tableauScores += tag('li', '', n);
@@ -813,6 +851,10 @@ window.onload = function() {
 
   conteneur = getId('j');
 
-  getId('Commencer').onclick = afficherQuestion;
-  getId('liste').onclick = afficherListeQuestions;
-};
+  getId('Commencer').addEventListener('click', afficherQuestion);
+  getId('liste').addEventListener('click', afficherListeQuestions);
+}
+
+
+// Quand la page est complètement chargée, on démarre
+window.addEventListener('load', demarrage);

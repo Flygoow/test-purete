@@ -4,12 +4,13 @@
  * Créé par Boudah Talenka <boudah.talenka@gmail.com>
  * et publié sous licence GNU General Public License.
  */
+'use strict';
 
 
 /**
  * Alias of document.getElementById()
  * @param {string} id DOM Node identifier.
- * @return {Node} DOM Node.
+ * @return {Element} DOM Node.
  */
 function getId(id) {
   return document.getElementById(id);
@@ -20,7 +21,7 @@ function getId(id) {
  * Create a DOM Element and append it to the DOM body
  * @param {string} tagName The < tag name > .
  * @param {string=} opt_id The Node identifier.
- * @return {Node} The DOM Node.
+ * @return {Element} The DOM Node.
  */
 function create(tagName, opt_id) {
   return appendNode(document.body, tagName, opt_id);
@@ -29,16 +30,17 @@ function create(tagName, opt_id) {
 
 /**
  * Create a DOM Element and append it to a node
- * @param {Node} containerNode the target node.
+ * @param {Element} containerNode the target node.
  * @param {string} tagName The < tag name > .
  * @param {string=} opt_id The Node identifier.
- * @return {Node} The DOM Node.
+ * @return {Element} The DOM Node.
  */
 function appendNode(containerNode, tagName, opt_id)
 {
+  /** @type {Element} */
   var node = document.createElement(tagName);
 
-  node.setAttribute('id', opt_id ? opt_id : tagName);
+  if (opt_id) node.setAttribute('id', opt_id);
 
   containerNode.appendChild(node);
 
@@ -48,9 +50,9 @@ function appendNode(containerNode, tagName, opt_id)
 
 /**
  * Fill a node with html.
- * @param {Node} node the target node.
+ * @param {Element} node the target node.
  * @param {string} html the content.
- * @return {Node} The node itself.
+ * @return {Element} The node itself.
  */
 function fillNode(node, html)
 {
@@ -63,17 +65,21 @@ function fillNode(node, html)
 /**
  * Returns html for selection field with the specified options.
  * @param {string} id The select tag identifier.
- * @param {Object.<string>} options Options {"value": "label"...} or ["value"].
+ * @param {Object.<string, string>} options {"value": "label"} or ["value"].
  * @param {string=} opt_selected The selected item.
  * @return {string} html select tag.
  */
 function select(id, options, opt_selected) {
 
+  /** @type {string} */
   var html = '';
 
-  for (var val in options)
-  {
-    var value = (options instanceof Array) ? options[val] : val;
+  /** @type {string} */
+  var value;
+
+  for (var val in options) {
+
+    value = String((options instanceof Array) ? options[val] : val);
 
     html += '<option value="' + value + '"' +
                 ((value == opt_selected) ? 'selected=selected' : '') + '>' +
